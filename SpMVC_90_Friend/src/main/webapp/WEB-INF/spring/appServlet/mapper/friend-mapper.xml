@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.biz.friend.persistence.FriendDao">
+ 
+ 	<select id="createCode" resultType="String">
+ 	
+ 		SELECT MAX(fr_code) FROM tbl_friend 
+ 	
+ 	</select>
+ 	
+ 	
+ 	
+ 	<select id="search" resultType="FriendVO">
+ 	
+ 	
+ 		SELECT * FROM tbl_friend WHERE ${optionVal} LIKE CONCAT ('%', #{searchVal}, '%')
+ 	
+ 	
+ 	</select>
+ 	
+ 	
+ 	
+ 	<insert id="insert">
+ 	
+ 	
+ 	INSERT `tbl_friend`
+(`fr_code`,
+`fr_name`,
+`fr_number`,
+`fr_address`,
+`fr_hobby`,
+`fr_relative`)
+VALUES
+(#{fr_code},
+#{fr_name},
+#{fr_number},
+#{fr_address},
+#{fr_hobby},
+#{fr_relative});
+ 	
+ 	
+ 	
+ 	</insert>
+ 	
+ 	
+ 	
+ 	
+ 	<update id="update">
+ 	
+ 	UPDATE `tbl_friend`
+SET
+
+`fr_name` = #{fr_name},
+`fr_number` = #{fr_number},
+`fr_address` = #{fr_address},
+`fr_hobby` = #{fr_hobby},
+`fr_relative` = #{fr_relative}
+WHERE `fr_code` = #{fr_code};
+ 	
+ 	
+ 	</update>
+ 	
+ 
+ </mapper> 
